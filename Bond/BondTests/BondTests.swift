@@ -50,7 +50,7 @@ class BondTests: XCTestCase {
         })
         
         // act
-        dynamicInt ~> intBond
+        dynamicInt ~~> intBond
         
         // assert: it should change the value to 0
         XCTAssertEqual(newValue, 0)

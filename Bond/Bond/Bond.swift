@@ -227,28 +227,28 @@ public func _reduce<A, B, C, T>(dA: Dynamic<A>, dB: Dynamic<B>, dC: Dynamic<C>, 
 
 // MARK: Operators
 
-infix operator ~> { associativity left precedence 160 }
-infix operator ~>! { associativity left precedence 160 }
+infix operator ~~> { associativity left precedence 160 }
+infix operator ~~>! { associativity left precedence 160 }
 
-public func ~> <T>(left: Dynamic<T>, right: Bond<T>) {
+public func ~~> <T>(left: Dynamic<T>, right: Bond<T>) {
   right.bind(left)
 }
 
-public func ~> <T>(left: Dynamic<T>, right: T -> Void) -> Bond<T> {
+public func ~~> <T>(left: Dynamic<T>, right: T -> Void) -> Bond<T> {
   let bond = Bond<T>(right)
   bond.bind(left)
   return bond
 }
 
-public func ~> <T: Dynamical, U where T.DynamicType == U>(left: T, right: Bond<U>) {
-  left.designatedDynamic() ~> right
+public func ~~> <T: Dynamical, U where T.DynamicType == U>(left: T, right: Bond<U>) {
+  left.designatedDynamic() ~~> right
 }
 
-public func ~> <T: Dynamical, U: Bondable where T.DynamicType == U.BondType>(left: T, right: U) {
-  left.designatedDynamic() ~> right.designatedBond
+public func ~~> <T: Dynamical, U: Bondable where T.DynamicType == U.BondType>(left: T, right: U) {
+  left.designatedDynamic() ~~> right.designatedBond
 }
 
-public func ~> <T, U: Bondable where U.BondType == T>(left: Dynamic<T>, right: U) {
+public func ~~> <T, U: Bondable where U.BondType == T>(left: Dynamic<T>, right: U) {
   right.designatedBond.bind(left)
 }
 
